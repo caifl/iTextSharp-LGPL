@@ -5,10 +5,9 @@ iTextSharp is a port of the iText open source Java library for PDF generation wr
 
 NuGet package
 -------------
+A compiled binary of iTextSharp 4.1.6 is provided by the `iTextSharp.Core` NuGet package. To install it, run the following command in the Package Manager Console:
 
-A compiled binary of iTextSharp 4.1.6 is provided by the `iTextSharp-LGPL` NuGet package. To install it, run the following command in the Package Manager Console:
-
-    Install-Package iTextSharp-LGPL
+    Install-Package iTextSharp.Core
 
 Updates and bug fixes
 ---------------------
@@ -17,6 +16,7 @@ This repository is frozen to iTextSharp version 4.1.6 and will *not* be updated.
 
 For more recent versions (available under AGPL and commercial licenses), please refer to:
 
+- [iTextSharp Core NuGet](https://www.nuget.org/packages/iTextSharp.Core/)
 - [Corporate homepage of iText](http://itextpdf.com/)
 - [Official NuGet package "iTextSharp"](https://www.nuget.org/packages/iTextSharp/)
 - [Official GitHub repository "itext/iTextSharp"](https://github.com/itext/itextsharp)
