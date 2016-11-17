@@ -77,7 +77,9 @@ namespace iTextSharp.text {
         /// </overloads>
         public Color(System.Drawing.Color color) {
             this.color = color;
+          
         }
+
 
         /// <summary>
         /// Gets the red component value of this <see cref="T:System.Drawing.Color"/> structure.

@@ -111,12 +111,12 @@ namespace iTextSharp.text.pdf.codec {
             fromUrl = url;
             Stream isp = null;
             try {
-                isp = WebRequest.Create(url).GetResponse().GetResponseStream();
+                isp = WebRequest.Create(url).GetResponseAsync().Result.GetResponseStream();
                 Process(isp);
             }
             finally {
                 if (isp != null) {
-                    isp.Close();
+                    isp.Dispose();
                 }
             }
         }
@@ -141,7 +141,7 @@ namespace iTextSharp.text.pdf.codec {
             }
             finally {
                 if (isp != null) {
-                    isp.Close();
+                    isp.Dispose();
                 }
             }
         }

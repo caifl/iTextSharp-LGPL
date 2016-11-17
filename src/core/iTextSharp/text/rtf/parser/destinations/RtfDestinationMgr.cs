@@ -170,7 +170,7 @@ namespace iTextSharp.text.rtf.parser.destinations {
                 c = (RtfDestination)destinationObjects[value.Name];        
             } else {
                 try {
-                    c = (RtfDestination)value.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new Type[0], null).Invoke(null);
+                    c = (RtfDestination)value.GetConstructor(null).Invoke(null);
                 } catch  {
                     return false;
                 }

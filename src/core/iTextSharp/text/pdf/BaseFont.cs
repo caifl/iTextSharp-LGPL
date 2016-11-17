@@ -594,7 +594,7 @@ namespace iTextSharp.text.pdf {
         public static BaseFont CreateFont(String name, String encoding, bool embedded, bool cached, byte[] ttfAfm, byte[] pfb, bool noThrow) {
             return CreateFont(name, encoding, embedded, cached, ttfAfm, pfb, false, false);
         }
-        
+
         /** Creates a new font. This font can be one of the 14 built in types,
         * a Type1 font referred to by an AFM or PFM file, a TrueType font (simple or collection) or a CJK font from the
         * Adobe Asian Font Pack. TrueType fonts and CJK fonts can have an optional style modifier
@@ -668,11 +668,11 @@ namespace iTextSharp.text.pdf {
                 if (fontFound != null)
                     return fontFound;
             }
-            if (isBuiltinFonts14 || name.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".afm") || name.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".pfm")) {
+            if (isBuiltinFonts14 || name.ToLowerInvariant().EndsWith(".afm") || name.ToLowerInvariant().EndsWith(".pfm")) { 
                 fontBuilt = new Type1Font(name, encoding, embedded, ttfAfm, pfb, forceRead);
                 fontBuilt.fastWinansi = encoding.Equals(CP1252);
             }
-            else if (nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".ttf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".otf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).IndexOf(".ttc,") > 0) {
+            else if (nameBase.ToLowerInvariant().EndsWith(".ttf") || nameBase.ToLowerInvariant().IndexOf(".ttc,") > 0) { 
                 if (encoding.Equals(IDENTITY_H) || encoding.Equals(IDENTITY_V))
                     fontBuilt = new TrueTypeFontUnicode(name, encoding, embedded, ttfAfm, forceRead);
                 else {
@@ -1175,7 +1175,7 @@ namespace iTextSharp.text.pdf {
         public static string[][] GetFullFontName(string name, string encoding, byte[] ttfAfm) {
             string nameBase = GetBaseName(name);
             BaseFont fontBuilt = null;
-            if (nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".ttf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".otf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).IndexOf(".ttc,") > 0)
+            if (nameBase.ToLowerInvariant().EndsWith(".ttf") || nameBase.ToLowerInvariant().EndsWith(".otf") || nameBase.ToLowerInvariant().IndexOf(".ttc,") > 0)
                 fontBuilt = new TrueTypeFont(name, CP1252, false, ttfAfm, true, false);
             else
                 fontBuilt = CreateFont(name, encoding, false, false, ttfAfm, null);
@@ -1193,7 +1193,7 @@ namespace iTextSharp.text.pdf {
         public static Object[] GetAllFontNames(String name, String encoding, byte[] ttfAfm) {
             String nameBase = GetBaseName(name);
             BaseFont fontBuilt = null;
-            if (nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".ttf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".otf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).IndexOf(".ttc,") > 0)
+            if (nameBase.ToLowerInvariant().EndsWith(".ttf") || nameBase.ToLowerInvariant().EndsWith(".otf") || nameBase.ToLowerInvariant().IndexOf(".ttc,") > 0)
                 fontBuilt = new TrueTypeFont(name, CP1252, false, ttfAfm, true, false);
             else
                 fontBuilt = CreateFont(name, encoding, false, false, ttfAfm, null);
@@ -1211,7 +1211,7 @@ namespace iTextSharp.text.pdf {
         public static String[][] GetAllNameEntries(String name, String encoding, byte[] ttfAfm) {
             String nameBase = GetBaseName(name);
             BaseFont fontBuilt = null;
-            if (nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".ttf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".otf") || nameBase.ToLower(System.Globalization.CultureInfo.InvariantCulture).IndexOf(".ttc,") > 0)
+            if (nameBase.ToLowerInvariant().EndsWith(".ttf") || nameBase.ToLowerInvariant().EndsWith(".otf") || nameBase.ToLowerInvariant().IndexOf(".ttc,") > 0)
                 fontBuilt = new TrueTypeFont(name, CP1252, false, ttfAfm, true, false);
             else
                 fontBuilt = CreateFont(name, encoding, false, false, ttfAfm, null);
@@ -1353,8 +1353,8 @@ namespace iTextSharp.text.pdf {
             Stream istr = null;
             // Try to use resource loader to load the properties file.
             try {
-                Assembly assm = Assembly.GetExecutingAssembly();
-                istr = assm.GetManifestResourceStream(key);
+                //Assembly assm = Assembly.GetEntryAssemblyGetExecutingAssembly();
+                //istr = assm.GetManifestResourceStream(key);
             }
             catch {
             }
@@ -1371,7 +1371,7 @@ namespace iTextSharp.text.pdf {
                     else if (obj is string) {
                         string dir = (string)obj;
                         try {
-                            istr = Assembly.LoadFrom(dir).GetManifestResourceStream(key);
+                            //istr = Assembly.LoadFrom(dir).GetManifestResourceStream(key);
                         }
                         catch {
                         }

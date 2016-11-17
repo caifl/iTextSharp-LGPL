@@ -147,11 +147,6 @@ namespace iTextSharp.text.pdf {
             }
         }
     
-        public override void Close() {
-            Finish();
-            outc.Close();
-        }
-    
         public override void WriteByte(byte value) {
             buf[0] = value;
             Write(buf, 0, 1);

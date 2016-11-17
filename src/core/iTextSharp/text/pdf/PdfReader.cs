@@ -712,10 +712,11 @@ namespace iTextSharp.text.pdf {
                 if (!foundRecipient || envelopedData == null)
                 {
                     throw new UnsupportedPdfException("Bad certificate and key.");
-                }            
+                }
 
-                SHA1 sh = new SHA1CryptoServiceProvider();
+                SHA1 sh = SHA1.Create();
 
+                /*
                 sh.TransformBlock(envelopedData, 0, 20, envelopedData, 0);
                 for (int i=0; i<recipients.Size; i++) {
                     byte[] encodedRecipient = recipients[i].GetBytes();  
@@ -725,6 +726,7 @@ namespace iTextSharp.text.pdf {
                     sh.TransformBlock(PdfEncryption.metadataPad, 0, PdfEncryption.metadataPad.Length, PdfEncryption.metadataPad, 0);
                 sh.TransformFinalBlock(envelopedData, 0, 0);        
                 encryptionKey = sh.Hash;
+                */
             }
             decrypt = new PdfEncryption();
             decrypt.SetCryptoMode(cryptoMode, lengthValue);
@@ -1754,8 +1756,8 @@ namespace iTextSharp.text.pdf {
                 while ((n = zip.Read(b, 0, b.Length)) > 0) {
                     outp.Write(b, 0, n);
                 }
-                zip.Close();
-                outp.Close();
+                zip.Dispose();
+                outp.Dispose();
                 return outp.ToArray();
             }
             catch {

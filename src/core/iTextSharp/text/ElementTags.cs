@@ -190,24 +190,24 @@ namespace iTextSharp.text
     
         /// <summary> attribute of the chunk/table/cell tag </summary>
         public const string BLUE = "blue";
+
+        /// <summary> attribute of the chunk tag </summary>
+        public static readonly string SUBSUPSCRIPT = Chunk.SUBSUPSCRIPT.ToLowerInvariant();
     
         /// <summary> attribute of the chunk tag </summary>
-        public static readonly string SUBSUPSCRIPT = Chunk.SUBSUPSCRIPT.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-    
+        public static readonly string LOCALGOTO = Chunk.LOCALGOTO.ToLowerInvariant();
+
         /// <summary> attribute of the chunk tag </summary>
-        public static readonly string LOCALGOTO = Chunk.LOCALGOTO.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-    
+        public static readonly string REMOTEGOTO = Chunk.REMOTEGOTO.ToLowerInvariant();
+
         /// <summary> attribute of the chunk tag </summary>
-        public static readonly string REMOTEGOTO = Chunk.REMOTEGOTO.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-    
+        public static readonly string LOCALDESTINATION = Chunk.LOCALDESTINATION.ToLowerInvariant();
+
         /// <summary> attribute of the chunk tag </summary>
-        public static readonly string LOCALDESTINATION = Chunk.LOCALDESTINATION.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-    
-        /// <summary> attribute of the chunk tag </summary>
-        public static readonly string GENERICTAG = Chunk.GENERICTAG.ToLower(System.Globalization.CultureInfo.InvariantCulture);
-    
+        public static readonly string GENERICTAG = Chunk.GENERICTAG.ToLowerInvariant();
+
         // tables/cells
-    
+
         /// <summary> the table tag </summary>
         public const string TABLE = "table";
     

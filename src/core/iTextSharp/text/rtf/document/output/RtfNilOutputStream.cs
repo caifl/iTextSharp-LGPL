@@ -98,9 +98,6 @@ namespace iTextSharp.text.rtf.document.output {
             }
         }
     
-        public override void Close() {
-        }
-    
         public override void Flush() {
         }
     

@@ -73,9 +73,6 @@ namespace iTextSharp.text.pdf {
             counter += count;
             outc.Write(buffer, offset, count);
         }
-    
-        public override void Close() {
-            outc.Close ();
-        }
+  
     }
 }

@@ -6,7 +6,6 @@ using System.util;
 using iTextSharp.text.pdf.interfaces;
 using iTextSharp.text.pdf.intern;
 using iTextSharp.text.pdf.collection;
-using iTextSharp.text.xml.xmp;
 /*
  * Copyright 2003 by Paulo Soares.
  *
@@ -223,15 +222,17 @@ namespace iTextSharp.text.pdf {
             // if there is XMP data to add: add it
             PdfDate date = new PdfDate();
             if (altMetadata != null) {
-                PdfStream xmp;
+                PdfStream xmp = new PdfStream(altMetadata);
                 try {
-                    XmpReader xmpr = new XmpReader(altMetadata);
+                    /*
+                     * XmpReader xmpr = new XmpReader(altMetadata);
                     if (!xmpr.Replace("http://ns.adobe.com/pdf/1.3/", "Producer", producer))
                         xmpr.Add("rdf:Description", "http://ns.adobe.com/pdf/1.3/", "pdf:Producer", producer);
                     if (!xmpr.Replace("http://ns.adobe.com/xap/1.0/", "ModifyDate", date.GetW3CDate()))
                         xmpr.Add("rdf:Description", "http://ns.adobe.com/xap/1.0/", "xmp:ModifyDate", date.GetW3CDate());
                     xmpr.Replace("http://ns.adobe.com/xap/1.0/", "MetadataDate", date.GetW3CDate());
                     xmp = new PdfStream(xmpr.SerializeDoc());
+                    */
                 }
                 catch {
                     xmp = new PdfStream(altMetadata);
@@ -354,7 +355,7 @@ namespace iTextSharp.text.pdf {
             }
             os.Flush();
             if (CloseStream)
-                os.Close();
+                os.Dispose();
             reader.Close();
         }
         

@@ -166,7 +166,7 @@ namespace iTextSharp.text {
                 string errorID;
                 if (rawData == null){
                     WebRequest w = WebRequest.Create(url);
-                    inp = w.GetResponse().GetResponseStream();
+                    inp = w.GetResponseAsync().Result.GetResponseStream();
                     errorID = url.ToString();
                 }
                 else{
@@ -228,7 +228,7 @@ namespace iTextSharp.text {
             }
             finally {
                 if (inp != null) {
-                    try{inp.Close();}catch{}
+                    try{inp.Dispose();}catch{}
                     inp = null;
                 }
             }

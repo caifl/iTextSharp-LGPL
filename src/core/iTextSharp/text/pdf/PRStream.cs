@@ -108,7 +108,7 @@ public class PRStream : PdfStream {
             MemoryStream stream = new MemoryStream();
             ZDeflaterOutputStream zip = new ZDeflaterOutputStream(stream, compressionLevel);
             zip.Write(conts, 0, conts.Length);
-            zip.Close();
+            zip.Dispose();
             bytes = stream.ToArray();
             Put(PdfName.FILTER, PdfName.FLATEDECODE);
         }
@@ -147,7 +147,7 @@ public class PRStream : PdfStream {
             MemoryStream stream = new MemoryStream();
             ZDeflaterOutputStream zip = new ZDeflaterOutputStream(stream, compressionLevel);
             zip.Write(data, 0, data.Length);
-            zip.Close();
+            zip.Dispose();
             bytes = stream.ToArray();
             this.compressionLevel = compressionLevel;
             Put(PdfName.FILTER, PdfName.FLATEDECODE);

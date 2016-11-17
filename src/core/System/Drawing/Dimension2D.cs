@@ -11,7 +11,7 @@ namespace System.Drawing {
     /// The actual storage representation of the sizes is left to
     /// the subclass.
     /// </remarks>
-    public abstract class Dimension2D : ICloneable {
+    public abstract class Dimension2D {
         /// <summary>
         /// This is an abstract class that cannot be instantiated directly.
         /// Type-specific implementation subclasses are available for

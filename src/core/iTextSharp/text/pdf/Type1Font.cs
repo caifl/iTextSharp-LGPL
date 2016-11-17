@@ -194,7 +194,7 @@ namespace iTextSharp.text.pdf {
                 finally {
                     if (istr != null) {
                         try {
-                            istr.Close();
+                            istr.Dispose();
                         }
                         catch {
                             // empty on purpose
@@ -216,7 +216,7 @@ namespace iTextSharp.text.pdf {
                     }
                 }
             }
-            else if (afmFile.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".afm")) {
+            else if (afmFile.ToLowerInvariant().EndsWith(".afm")) {
                 try {
                     if (ttfAfm == null)
                         rf = new RandomAccessFileOrArray(afmFile, forceRead);
@@ -235,7 +235,7 @@ namespace iTextSharp.text.pdf {
                     }
                 }
             }
-            else if (afmFile.ToLower(System.Globalization.CultureInfo.InvariantCulture).EndsWith(".pfm")) {
+            else if (afmFile.ToLowerInvariant().EndsWith(".pfm")) {
                 try {
                     MemoryStream ba = new MemoryStream();
                     if (ttfAfm == null)

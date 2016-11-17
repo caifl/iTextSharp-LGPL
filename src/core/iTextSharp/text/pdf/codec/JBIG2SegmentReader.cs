@@ -184,7 +184,7 @@ namespace iTextSharp.text.pdf.codec {
                     }
                     os.Write(s.data, 0, s.data.Length);
                 }
-                os.Close();
+                os.Dispose();
                 return os.ToArray();
             }
             public void AddSegment(JBIG2Segment s) {
@@ -414,7 +414,7 @@ namespace iTextSharp.text.pdf.codec {
                     os.Write(s.headerData, 0, s.headerData.Length);
                     os.Write(s.data, 0, s.data.Length);
                 }
-                os.Close();
+                os.Dispose();
             } catch {
             }
             if ( os.Length <= 0 ) {

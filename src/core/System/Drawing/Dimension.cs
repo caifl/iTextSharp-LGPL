@@ -128,6 +128,7 @@ namespace System.Drawing {
             return false;
         }
 
+
         /// <summary>
         /// Returns the hash code for this Dimension.
         /// </summary>

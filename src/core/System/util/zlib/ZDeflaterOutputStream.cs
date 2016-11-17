@@ -180,17 +180,5 @@ namespace System.util.zlib {
             z.free();
             z=null;
         }
-        
-        public override void Close() {
-            try{
-                try{Finish();}
-                catch (IOException) {}
-            }
-            finally{
-                End();
-                outp.Close();
-                outp=null;
-            }
-        }
     }
 }

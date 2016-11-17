@@ -101,10 +101,10 @@ internal class CJKFont : BaseFont {
             try {
                 Stream isp = GetResourceStream(RESOURCE_PATH + "cjkfonts.properties");
                 cjkFonts.Load(isp);
-                isp.Close();
+                isp.Dispose();
                 isp = GetResourceStream(RESOURCE_PATH + "cjkencodings.properties");
                 cjkEncodings.Load(isp);
-                isp.Close();
+                isp.Dispose();
             }
             catch {
                 cjkFonts = new Properties();
@@ -436,7 +436,7 @@ internal class CJKFont : BaseFont {
             // empty on purpose
         }
         finally {
-            try{istr.Close();}catch{}
+            try{istr.Dispose();}catch{}
         }
 
         return null;
@@ -598,7 +598,7 @@ internal class CJKFont : BaseFont {
             Stream isp = GetResourceStream(RESOURCE_PATH + name);
             Properties p = new Properties();
             p.Load(isp);
-            isp.Close();
+            isp.Dispose();
             IntHashtable W = CreateMetric(p["W"]);
             p.Remove("W");
             IntHashtable W2 = CreateMetric(p["W2"]);

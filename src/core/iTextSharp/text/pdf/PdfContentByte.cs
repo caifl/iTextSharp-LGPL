@@ -2844,10 +2844,12 @@ namespace iTextSharp.text.pdf {
             prs.AddDefaultColor(name, obj);
         }
 
-        public void Transform(System.Drawing.Drawing2D.Matrix tx) {
+        /*
+        public void Transform(System.Drawing.Graphics.Image.Matrix tx) {
             float[] c = tx.Elements;
             ConcatCTM(c[0], c[1], c[2], c[3], c[4], c[5]);
         }
+        */
 
         /**
         * Begins a marked content sequence. This sequence will be tagged with the structure <CODE>struc</CODE>.

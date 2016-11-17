@@ -1,0 +1,36 @@
+{
+  "name": "iTextSharp.Core",
+  "dependencies": {
+  	"Microsoft.NETCore.App": {
+      "version": "1.1.0",
+      "type": "platform"
+    },
+    "Portable.BouncyCastle": "1.8.1.1",
+    "System.Collections.NonGeneric": "4.0.1",
+    "System.Diagnostics.Debug": "4.3.0",
+    "System.Reflection.TypeExtensions": "4.3.0-preview1-24530-04",
+    "System.Xml.XmlDocument": "4.3.0",
+  },
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "System.Collections": "4.0.11",
+        "System.Collections.Concurrent": "4.0.10",
+        "System.ComponentModel": "4.0.0.0",
+        "System.Linq": "4.1.0",
+        "System.Reflection": "4.1.0",
+        "System.Runtime": "4.1.0",
+        "System.Runtime.InteropServices": "4.0.10",
+        "System.Threading": "4.0.10",
+        "System.Threading.Tasks": "4.0.10",
+        "System.Drawing.Primitives": "4.3.0",
+        "System.Xml.XmlSerializer": "4.0.11",
+        "System.Drawing.Graphics":  "0.1.0-*"
+      }
+    }
+  }
+}

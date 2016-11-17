@@ -160,10 +160,6 @@ namespace System.util.zlib {
     
         public override void WriteByte(byte b) {
         }
-
-        public override void Close() {
-            inp.Close();
-        }
     
         public override int ReadByte() {
             if(Read(buf1, 0, 1)<=0)

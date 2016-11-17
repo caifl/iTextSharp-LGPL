@@ -94,7 +94,7 @@ namespace iTextSharp.text.pdf {
                     byte[] tmp = certChain[k].GetEncoded();
                     bout.Write(tmp, 0, tmp.Length);
                 }
-                bout.Close();
+                bout.Dispose();
                 Cert = bout.ToArray();
                 Contents = pkcs.GetEncodedPKCS1();
             }

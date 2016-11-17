@@ -680,12 +680,12 @@ namespace iTextSharp.text.pdf.codec.wmf
         Stream imgIn;
         byte[] data = null;
         if (image.OriginalData == null) {
-            imgIn = WebRequest.Create(image.Url).GetResponse().GetResponseStream();
+            imgIn = WebRequest.Create(image.Url).GetResponseAsync().Result.GetResponseStream();
             MemoryStream outp = new MemoryStream();
             int b = 0;
             while ((b = imgIn.ReadByte()) != -1)
                 outp.WriteByte((byte)b);
-            imgIn.Close();
+            imgIn.Dispose();
             data = outp.ToArray();
         }
         else
@@ -747,7 +747,7 @@ namespace iTextSharp.text.pdf.codec.wmf
 
         WriteDWord(os, 3);
         WriteWord(os, 0);
-        os.Close();
+        os.Dispose();
         return os.ToArray();
     }
 

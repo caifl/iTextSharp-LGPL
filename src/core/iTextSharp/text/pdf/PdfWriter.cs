@@ -4,12 +4,10 @@ using System.Text;
 using System.Collections;
 using System.util.collections;
 using System.util;
-using iTextSharp.text;
 using iTextSharp.text.pdf.events;
 using iTextSharp.text.pdf.interfaces;
 using iTextSharp.text.pdf.intern;
 using iTextSharp.text.pdf.collection;
-using iTextSharp.text.xml.xmp;
 using Org.BouncyCastle.X509;
 /*
  * $Id: PdfWriter.cs,v 1.48 2008/05/13 11:25:23 psoares33 Exp $
@@ -1698,10 +1696,10 @@ namespace iTextSharp.text.pdf {
         private byte[] CreateXmpMetadataBytes() {
             MemoryStream baos = new MemoryStream();
             try {
-                XmpWriter xmp = new XmpWriter(baos, pdf.Info, pdfxConformance.PDFXConformance);
-                xmp.Close();
+                // XmpWriter xmp = new XmpWriter(baos, pdf.Info, pdfxConformance.PDFXConformance);
+                //  xmp.Close();
             }
-            catch(IOException) {
+            catch (IOException) {
             }
             return baos.ToArray();
         }

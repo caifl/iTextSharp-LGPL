@@ -92,14 +92,14 @@ namespace iTextSharp.text.rtf.document.output {
         * Writes the content of the temporary file into the Stream.
         */
         public void WriteTo(Stream target) {
-            this.data.Close();
+            this.data.Dispose();
             BufferedStream tempIn = new BufferedStream(new FileStream(this.tempFile, FileMode.Open));
             byte[] buffer = new byte[8192];
             int bytesRead = -1;
             while ((bytesRead = tempIn.Read(buffer, 0, buffer.Length)) > 0) {
                 target.Write(buffer, 0, bytesRead);
             }
-            tempIn.Close();
+            tempIn.Dispose();
             File.Delete(this.tempFile);
         }
 

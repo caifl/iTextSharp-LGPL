@@ -1,9 +1,7 @@
+using iTextSharp.text.html;
 using System;
 using System.Collections;
 using System.util;
-using iTextSharp.text;
-using iTextSharp.text.html;
-using iTextSharp.text.factories;
 /*
  * $Id: ElementFactory.cs,v 1.9 2008/05/13 11:25:14 psoares33 Exp $
  * 

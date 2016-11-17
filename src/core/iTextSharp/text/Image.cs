@@ -334,9 +334,10 @@ namespace iTextSharp.text {
         /// <param name="image">an Image</param>
         /// <returns>an object of type Gif, Jpeg or Png</returns>
         public static Image GetInstance(Image image) {
-            if (image == null)
-                return null;
-            return (Image)image.GetType().GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new Type[] {typeof(Image)}, null).Invoke(new object[] {image});
+            return null;
+            //if (image == null)
+            //    return null;
+            // return (Image)image.GetType().GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new Type[] {typeof(Image)}, null).Invoke(new object[] {image});
         }
 
         /// <summary>
@@ -345,96 +346,116 @@ namespace iTextSharp.text {
         /// <param name="url">an URL</param>
         /// <returns>an object of type Gif, Jpeg or Png</returns>
         public static Image GetInstance(Uri url) {
+            return null;
+            /*
             Stream istr = null;
-            try {
+            try
+            {
                 WebRequest w = WebRequest.Create(url);
                 istr = w.GetResponse().GetResponseStream();
                 int c1 = istr.ReadByte();
                 int c2 = istr.ReadByte();
                 int c3 = istr.ReadByte();
                 int c4 = istr.ReadByte();
-			    // jbig2
-			    int c5 = istr.ReadByte();
-			    int c6 = istr.ReadByte();
-			    int c7 = istr.ReadByte();
-			    int c8 = istr.ReadByte();
+                // jbig2
+                int c5 = istr.ReadByte();
+                int c6 = istr.ReadByte();
+                int c7 = istr.ReadByte();
+                int c8 = istr.ReadByte();
                 istr.Close();
 
                 istr = null;
-                if (c1 == 'G' && c2 == 'I' && c3 == 'F') {
+                if (c1 == 'G' && c2 == 'I' && c3 == 'F')
+                {
                     GifImage gif = new GifImage(url);
                     Image img = gif.GetImage(1);
                     return img;
                 }
-                if (c1 == 0xFF && c2 == 0xD8) {
+                if (c1 == 0xFF && c2 == 0xD8)
+                {
                     return new Jpeg(url);
                 }
-			    if (c1 == 0x00 && c2 == 0x00 && c3 == 0x00 && c4 == 0x0c) {
-				    return new Jpeg2000(url);
-			    }
-			    if (c1 == 0xff && c2 == 0x4f && c3 == 0xff && c4 == 0x51) {
-				    return new Jpeg2000(url);
-			    }
+                if (c1 == 0x00 && c2 == 0x00 && c3 == 0x00 && c4 == 0x0c)
+                {
+                    return new Jpeg2000(url);
+                }
+                if (c1 == 0xff && c2 == 0x4f && c3 == 0xff && c4 == 0x51)
+                {
+                    return new Jpeg2000(url);
+                }
                 if (c1 == PngImage.PNGID[0] && c2 == PngImage.PNGID[1]
-                        && c3 == PngImage.PNGID[2] && c4 == PngImage.PNGID[3]) {
+                        && c3 == PngImage.PNGID[2] && c4 == PngImage.PNGID[3])
+                {
                     Image img = PngImage.GetImage(url);
                     return img;
                 }
-                if (c1 == 0xD7 && c2 == 0xCD) {
+                if (c1 == 0xD7 && c2 == 0xCD)
+                {
                     Image img = new ImgWMF(url);
                     return img;
                 }
-                if (c1 == 'B' && c2 == 'M') {
+                if (c1 == 'B' && c2 == 'M')
+                {
                     Image img = BmpImage.GetImage(url);
                     return img;
                 }
                 if ((c1 == 'M' && c2 == 'M' && c3 == 0 && c4 == 42)
-                        || (c1 == 'I' && c2 == 'I' && c3 == 42 && c4 == 0)) {
+                        || (c1 == 'I' && c2 == 'I' && c3 == 42 && c4 == 0))
+                {
                     RandomAccessFileOrArray ra = null;
-                    try {
-                        if (url.IsFile) {
+                    try
+                    {
+                        if (url.IsFile)
+                        {
                             String file = url.LocalPath;
                             ra = new RandomAccessFileOrArray(file);
-                        } else
+                        }
+                        else
                             ra = new RandomAccessFileOrArray(url);
                         Image img = TiffImage.GetTiffImage(ra, 1);
                         img.url = url;
                         return img;
-                    } finally {
+                    }
+                    finally
+                    {
                         if (ra != null)
                             ra.Close();
                     }
 
                 }
-                if ( c1 == 0x97 && c2 == 'J' && c3 == 'B' && c4 == '2' &&
-                        c5 == '\r' && c6 == '\n' && c7 == 0x1a && c8 == '\n' ) {
+                if (c1 == 0x97 && c2 == 'J' && c3 == 'B' && c4 == '2' &&
+                        c5 == '\r' && c6 == '\n' && c7 == 0x1a && c8 == '\n')
+                {
                     RandomAccessFileOrArray ra = null;
-                    try {
-                        if (url.IsFile) {
+                    try
+                    {
+                        if (url.IsFile)
+                        {
                             String file = url.LocalPath;
                             ra = new RandomAccessFileOrArray(file);
-                        } else
+                        }
+                        else
                             ra = new RandomAccessFileOrArray(url);
                         Image img = JBIG2Image.GetJbig2Image(ra, 1);
                         img.url = url;
                         return img;
-                    } finally {
+                    }
+                    finally
+                    {
                         if (ra != null)
                             ra.Close();
                     }
                 }
                 throw new IOException(url.ToString()
                         + " is not a recognized imageformat.");
-            } finally {
-                if (istr != null) {
-                    istr.Close();
-                }
             }
+            finally
+            {
+            }*/
         }
 
         public static Image GetInstance(Stream s) {
             byte[] a = RandomAccessFileOrArray.InputStreamToArray(s);
-            s.Close();
             return GetInstance(a);
         }
 
@@ -509,10 +530,13 @@ namespace iTextSharp.text {
         /// <param name="image"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public static Image GetInstance(System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format) {
+        public static Image GetInstance(/*System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format*/) {
+            /*
             MemoryStream ms = new MemoryStream();
             image.Save(ms, format);
             return GetInstance(ms.ToArray());
+            */
+            return null;
         }
     
         /// <summary>
@@ -525,152 +549,10 @@ namespace iTextSharp.text {
         /// </param>
         /// <param name="forceBW">if true the image is treated as black and white</param>
         /// <returns>an object of type ImgRaw</returns>
-        public static Image GetInstance(System.Drawing.Image image, Color color, bool forceBW) {
-            System.Drawing.Bitmap bm = (System.Drawing.Bitmap)image;
-            int w = bm.Width;
-            int h = bm.Height;
-            int pxv = 0;
-            if (forceBW) {
-                int byteWidth = (w / 8) + ((w & 7) != 0 ? 1 : 0);
-                byte[] pixelsByte = new byte[byteWidth * h];
-            
-                int index = 0;
-                int size = h * w;
-                int transColor = 1;
-                if (color != null) {
-                    transColor = (color.R + color.G + color.B < 384) ? 0 : 1;
-                }
-                int[] transparency = null;
-                int cbyte = 0x80;
-                int wMarker = 0;
-                int currByte = 0;
-                if (color != null) {
-                    for (int j = 0; j < h; j++) {
-                        for (int i = 0; i < w; i++) {
-                            int alpha = bm.GetPixel(i, j).A;
-                            if (alpha < 250) {
-                                if (transColor == 1)
-                                    currByte |= cbyte;
-                            }
-                            else {
-                                if ((bm.GetPixel(i, j).ToArgb() & 0x888) != 0)
-                                    currByte |= cbyte;
-                            }
-                            cbyte >>= 1;
-                            if (cbyte == 0 || wMarker + 1 >= w) {
-                                pixelsByte[index++] = (byte)currByte;
-                                cbyte = 0x80;
-                                currByte = 0;
-                            }
-                            ++wMarker;
-                            if (wMarker >= w)
-                                wMarker = 0;
-                        }
-                    }
-                }
-                else {
-                    for (int j = 0; j < h; j++) {
-                        for (int i = 0; i < w; i++) {
-                            if (transparency == null) {
-                                int alpha = bm.GetPixel(i, j).A;
-                                if (alpha == 0) {
-                                    transparency = new int[2];
-                                    transparency[0] = transparency[1] = ((bm.GetPixel(i, j).ToArgb() & 0x888) != 0) ? 1 : 0;
-                                }
-                            }
-                            if ((bm.GetPixel(i, j).ToArgb() & 0x888) != 0)
-                                currByte |= cbyte;
-                            cbyte >>= 1;
-                            if (cbyte == 0 || wMarker + 1 >= w) {
-                                pixelsByte[index++] = (byte)currByte;
-                                cbyte = 0x80;
-                                currByte = 0;
-                            }
-                            ++wMarker;
-                            if (wMarker >= w)
-                                wMarker = 0;
-                        }
-                    }
-                }
-                return Image.GetInstance(w, h, 1, 1, pixelsByte, transparency);
-            }
-            else {
-                byte[] pixelsByte = new byte[w * h * 3];
-                byte[] smask = null;
-            
-                int index = 0;
-                int size = h * w;
-                int red = 255;
-                int green = 255;
-                int blue = 255;
-                if (color != null) {
-                    red = color.R;
-                    green = color.G;
-                    blue = color.B;
-                }
-                int[] transparency = null;
-                if (color != null) {
-                    for (int j = 0; j < h; j++) {
-                        for (int i = 0; i < w; i++) {
-                            int alpha = (bm.GetPixel(i, j).ToArgb() >> 24) & 0xff;
-                            if (alpha < 250) {
-                                pixelsByte[index++] = (byte) red;
-                                pixelsByte[index++] = (byte) green;
-                                pixelsByte[index++] = (byte) blue;
-                            }
-                            else {
-                                pxv = bm.GetPixel(i, j).ToArgb();
-                                pixelsByte[index++] = (byte) ((pxv >> 16) & 0xff);
-                                pixelsByte[index++] = (byte) ((pxv >> 8) & 0xff);
-                                pixelsByte[index++] = (byte) ((pxv) & 0xff);
-                            }
-                        }
-                    }
-                }
-                else {
-                    int transparentPixel = 0;
-                    smask = new byte[w * h];
-                    bool shades = false;
-                    int smaskPtr = 0;
-                    for (int j = 0; j < h; j++) {
-                        for (int i = 0; i < w; i++) {
-                            pxv = bm.GetPixel(i, j).ToArgb();
-                            byte alpha = smask[smaskPtr++] = (byte) ((pxv >> 24) & 0xff);
-                            /* bugfix by Chris Nokleberg */
-                            if (!shades) {
-                                if (alpha != 0 && alpha != 255) {
-                                    shades = true;
-                                } else if (transparency == null) {
-                                    if (alpha == 0) {
-                                        transparentPixel = pxv & 0xffffff;
-                                        transparency = new int[6];
-                                        transparency[0] = transparency[1] = (transparentPixel >> 16) & 0xff;
-                                        transparency[2] = transparency[3] = (transparentPixel >> 8) & 0xff;
-                                        transparency[4] = transparency[5] = transparentPixel & 0xff;
-                                    }
-                                } else if ((pxv & 0xffffff) != transparentPixel) {
-                                    shades = true;
-                                }
-                            }
-                            pixelsByte[index++] = (byte) ((pxv >> 16) & 0xff);
-                            pixelsByte[index++] = (byte) ((pxv >> 8) & 0xff);
-                            pixelsByte[index++] = (byte) (pxv & 0xff);
-                        }
-                    }
-                    if (shades)
-                        transparency = null;
-                    else
-                        smask = null;
-                }
-                Image img = Image.GetInstance(w, h, 3, 8, pixelsByte, transparency);
-                if (smask != null) {
-                    Image sm = Image.GetInstance(w, h, 1, 8, smask);
-                    sm.MakeMask();
-                    img.ImageMask = sm;
-                }
-                return img;
-            }
+        /*public static Image GetInstance(System.Drawing.Image image, Color color, bool forceBW) {
+            return null;
         }
+        */
     
         /// <summary>
         /// Gets an instance of an Image from a System.Drawing.Image.
@@ -681,9 +563,9 @@ namespace iTextSharp.text {
         /// pixels are replaced by this color
         /// </param>
         /// <returns>an object of type ImgRaw</returns>
-        public static Image GetInstance(System.Drawing.Image image, Color color) {
+        /*public static Image GetInstance(System.Drawing.Image image, Color color) {
             return Image.GetInstance(image, color, false);
-        }
+        }*/
     
         /// <summary>
         /// Gets an instance of an Image.
@@ -712,7 +594,7 @@ namespace iTextSharp.text {
         * @param ref the reference to the image dictionary
         * @throws BadElementException on error
         * @return the image
-        */    
+        */
         public static Image GetInstance(PRIndirectReference iref) {
             PdfDictionary dic = (PdfDictionary)PdfReader.GetPdfObjectRelease(iref);
             int width = ((PdfNumber)PdfReader.GetPdfObjectRelease(dic.Get(PdfName.WIDTH))).IntValue;

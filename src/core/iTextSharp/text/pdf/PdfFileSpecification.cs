@@ -178,7 +178,7 @@ namespace iTextSharp.text.pdf {
                     else {
                         if (filePath.StartsWith("file:/") || filePath.StartsWith("http://") || filePath.StartsWith("https://")) {
                             WebRequest w = WebRequest.Create(filePath);
-                            inp = w.GetResponse().GetResponseStream();
+                            inp = w.GetResponseAsync().Result.GetResponseStream();
                         }
                         else {
                             inp = BaseFont.GetResourceStream(filePath);
@@ -207,7 +207,7 @@ namespace iTextSharp.text.pdf {
             }
             finally {
                 if (inp != null)
-                    try{inp.Close();}catch{}
+                    try{inp.Dispose();}catch{}
             }
             PdfDictionary f = new PdfDictionary();
             f.Put(PdfName.F, refi);

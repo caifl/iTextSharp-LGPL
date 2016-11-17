@@ -4,9 +4,9 @@ using System.Collections;
 using System.util;
 using System.Globalization;
 
-using iTextSharp.text.html;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using iTextSharp.text.html;
 
 /*
  * $Id: FontFactoryImp.cs,v 1.13 2008/05/13 11:25:10 psoares33 Exp $

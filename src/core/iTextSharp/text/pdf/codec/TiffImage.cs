@@ -445,7 +445,7 @@ namespace iTextSharp.text.pdf.codec {
                         photometric == TIFFConstants.PHOTOMETRIC_MINISBLACK ? Image.CCITT_BLACKIS1 : 0, g4.Close());
                 }
                 else {
-                    zip.Close();
+                    zip.Dispose();
                     img = Image.GetInstance(w, h, samplePerPixel, bitsPerSample, stream.ToArray());
                     img.Deflated = true;
                 }

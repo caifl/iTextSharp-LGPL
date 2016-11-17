@@ -76,13 +76,13 @@ namespace iTextSharp.text.pdf {
         public RandomAccessFileOrArray(String filename, bool forceRead) {
             if (!File.Exists(filename)) {
                 if (filename.StartsWith("file:/") || filename.StartsWith("http://") || filename.StartsWith("https://")) {
-                    Stream isp = WebRequest.Create(new Uri(filename)).GetResponse().GetResponseStream();
+                    Stream isp = WebRequest.Create(new Uri(filename)).GetResponseAsync().Result.GetResponseStream();
                     try {
                         this.arrayIn = InputStreamToArray(isp);
                         return;
                     }
                     finally {
-                        try {isp.Close();}catch{}
+                        try {isp.Dispose();}catch{}
                     }
                 }
                 else {
@@ -94,7 +94,7 @@ namespace iTextSharp.text.pdf {
                         return;
                     }
                     finally {
-                        try {isp.Close();}catch{}
+                        try {isp.Dispose();}catch{}
                     }
                 }
             }
@@ -105,7 +105,7 @@ namespace iTextSharp.text.pdf {
                     this.arrayIn = InputStreamToArray(s);
                 }
                 finally {
-                    try{if (s != null) s.Close();}catch{}
+                    try{if (s != null) s.Dispose();}catch{}
                 }
                 return;
             }
@@ -114,12 +114,12 @@ namespace iTextSharp.text.pdf {
         }
 
         public RandomAccessFileOrArray(Uri url) {
-            Stream isp = WebRequest.Create(url).GetResponse().GetResponseStream();
+            Stream isp = WebRequest.Create(url).GetResponseAsync().Result.GetResponseStream();
             try {
                 this.arrayIn = InputStreamToArray(isp);
             }
             finally {
-                try {isp.Close();}catch{}
+                try {isp.Dispose();}catch{}
             }
         }
 
@@ -272,7 +272,7 @@ namespace iTextSharp.text.pdf {
         public void Close() {
             isBack = false;
             if (rf != null) {
-                rf.Close();
+                rf.Dispose();
                 rf = null;
             }
         }

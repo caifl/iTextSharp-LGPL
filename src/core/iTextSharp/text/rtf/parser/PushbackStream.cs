@@ -31,10 +31,6 @@ namespace iTextSharp.text.rtf.parser {
             get { return s.Position; }
             set { s.Position = value; }
         }
-        public override void Close()
-        {
-            s.Close();
-        }
         public override void Flush()
         {
             s.Flush();

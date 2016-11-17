@@ -392,7 +392,7 @@ namespace iTextSharp.text.pdf {
          * @return the simple file name
          */    
         protected static string GetTTCName(string name) {
-            int idx = name.ToLower(System.Globalization.CultureInfo.InvariantCulture).IndexOf(".ttc,");
+            int idx = name.ToLowerInvariant().IndexOf(".ttc,");
             if (idx < 0)
                 return name;
             else

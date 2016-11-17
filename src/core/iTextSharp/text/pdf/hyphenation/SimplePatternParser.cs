@@ -5,6 +5,7 @@ using System.Collections;
 using System.util;
 using iTextSharp.text.xml.simpleparser;
 using iTextSharp.text.html;
+
 /*
  * Copyright 2005 by Paulo Soares.
  *
@@ -81,7 +82,7 @@ namespace iTextSharp.text.pdf.hyphenation {
                 SimpleXMLParser.Parse(this, stream);
             }
             finally {
-                try{stream.Close();}catch{}
+                try{stream.Dispose();}catch{}
             }
         }
         

@@ -193,7 +193,7 @@ namespace iTextSharp.text {
                 string errorID;
                 if (rawData == null){
                     WebRequest w = WebRequest.Create(url);
-                    istr = w.GetResponse().GetResponseStream();
+                    istr = w.GetResponseAsync().Result.GetResponseStream();
                     errorID = url.ToString();
                 }
                 else{
@@ -306,7 +306,7 @@ namespace iTextSharp.text {
             }
             finally {
                 if (istr != null) {
-                    istr.Close();
+                    istr.Dispose();
                 }
             }
             plainWidth = this.Width;

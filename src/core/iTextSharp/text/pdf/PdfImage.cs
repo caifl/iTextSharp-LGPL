@@ -170,7 +170,7 @@ namespace iTextSharp.text.pdf {
                 // GIF, JPEG or PNG
                 String errorID;
                 if (image.RawData == null){
-                    isp = WebRequest.Create(image.Url).GetResponse().GetResponseStream();
+                    isp = WebRequest.Create(image.Url).GetResponseAsync().Result.GetResponseStream();
                     errorID = image.Url.ToString();
                 }
                 else{
@@ -247,7 +247,7 @@ namespace iTextSharp.text.pdf {
             finally {
                 if (isp != null) {
                     try{
-                        isp.Close();
+                        isp.Dispose();
                     }
                     catch  {
                         // empty on purpose

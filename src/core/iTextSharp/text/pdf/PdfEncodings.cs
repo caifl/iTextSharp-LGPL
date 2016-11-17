@@ -1,10 +1,10 @@
+using iTextSharp.text.xml.simpleparser;
 using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using System.util;
-using iTextSharp.text.xml.simpleparser;
 
 /*
  * Copyright 2002-2006 Paulo Soares
@@ -416,7 +416,7 @@ public class PdfEncodings {
         if (inp == null)
             throw new IOException("The Cmap " + name + " was not found.");
         EncodeStream(inp, planes);
-        inp.Close();
+        inp.Dispose();
     }
     
     internal static void EncodeStream(Stream inp, ArrayList planes) {

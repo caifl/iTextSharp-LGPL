@@ -189,7 +189,7 @@ namespace iTextSharp.text.pdf {
             }
             
             internal ByteStore(PRStream str) {
-                md5 = new MD5CryptoServiceProvider();
+                md5 = MD5.Create();
                 ByteBuffer bb = new ByteBuffer();
                 int level = 100;
                 SerObject(str, level, bb);

@@ -4,7 +4,6 @@ using System.Collections;
 using System.util;
 
 using iTextSharp.text.pdf;
-using iTextSharp.text.html;
 using iTextSharp.text.factories;
 using iTextSharp.text.pdf.draw;
 

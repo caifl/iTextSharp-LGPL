@@ -52,7 +52,7 @@ namespace iTextSharp.text.pdf.hyphenation {
      * @author cav@uniscope.co.jp
      */
 
-    public class TernaryTree : ICloneable {
+    public class TernaryTree {
 
         /**
          * We use 4 arrays to represent a node. I guess I should have created
@@ -450,7 +450,7 @@ namespace iTextSharp.text.pdf.hyphenation {
              */
             TernaryTree parent; 
 
-            private class Item : ICloneable {
+            private class Item  {
                 internal char parent;
                 internal char child;
 

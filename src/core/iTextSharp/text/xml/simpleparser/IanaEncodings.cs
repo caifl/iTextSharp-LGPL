@@ -533,7 +533,7 @@ namespace iTextSharp.text.xml.simpleparser {
         }
 
         public static Encoding GetEncodingEncoding(string name) {
-            String nameU = name.ToUpper(System.Globalization.CultureInfo.InvariantCulture);
+            String nameU = name.ToUpperInvariant();
             if (nameU.Equals("UNICODEBIGUNMARKED"))
                 return new UnicodeEncoding(true, false);
             if (nameU.Equals("UNICODEBIG"))

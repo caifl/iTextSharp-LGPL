@@ -110,7 +110,7 @@ public class PdfEncryption {
     private int cryptoMode;
     
     public PdfEncryption() {
-        md5 = new MD5CryptoServiceProvider();
+        md5 = MD5.Create();
         publicKeyHandler = new PdfPublicKeySecurityHandler();
     }
 
@@ -220,6 +220,8 @@ public class PdfEncryption {
      * ownerKey, documentID must be setuped
      */
     private void SetupGlobalEncryptionKey(byte[] documentID, byte[] userPad, byte[] ownerKey, int permissions) {
+        
+            /*
         this.documentID = documentID;
         this.ownerKey = ownerKey;
         this.permissions = permissions;
@@ -256,6 +258,7 @@ public class PdfEncryption {
             }
         }
         Array.Copy(digest, 0, mkey, 0, mkey.Length);
+        */
     }
 
     /**
@@ -264,6 +267,7 @@ public class PdfEncryption {
      */
     // use the revision to choose the setup method
     private void SetupUserKey() {
+            /*
         if (revision == STANDARD_ENCRYPTION_128 || revision == AES_128) {
             md5.TransformBlock(pad, 0, pad.Length, pad, 0);
             md5.TransformFinalBlock(documentID, 0, documentID.Length);
@@ -283,6 +287,7 @@ public class PdfEncryption {
             rc4.PrepareARCFOURKey(mkey);
             rc4.EncryptARCFOUR(pad, userKey);
         }
+        */
     }
 
     // gets keylength and revision and uses revison to choose the initial values for permissions
@@ -303,7 +308,7 @@ public class PdfEncryption {
     }
 
     public static byte[] CreateDocumentId() {
-        MD5 md5 = new MD5CryptoServiceProvider();
+        MD5 md5 = MD5.Create();
         long time = DateTime.Now.Ticks + Environment.TickCount;
         long mem = GC.GetTotalMemory(false);
         String s = time + "+" + mem + "+" + (seq++);
@@ -339,6 +344,7 @@ public class PdfEncryption {
     }    
 
     public void SetHashKey(int number, int generation) {
+            /*
         md5.Initialize();    //added by ujihara
         extra[0] = (byte)number;
         extra[1] = (byte)(number >> 8);
@@ -355,6 +361,7 @@ public class PdfEncryption {
         keySize = mkey.Length + 5;
         if (keySize > 16)
             keySize = 16;
+            */
     }
 
     public static PdfObject CreateInfoId(byte[] id) {
@@ -420,9 +427,11 @@ public class PdfEncryption {
                 }
             }
             
-            SHA1 sh = new SHA1CryptoServiceProvider();
+            SHA1 sh = SHA1.Create();
             byte[] encodedRecipient = null;
             byte[] seed = publicKeyHandler.GetSeed();
+
+                /*
             sh.TransformBlock(seed, 0, seed.Length, seed, 0);
             for (int i=0; i<publicKeyHandler.GetRecipientsSize(); i++)
             {
@@ -435,7 +444,9 @@ public class PdfEncryption {
             byte[] mdResult = sh.Hash;
             
             SetupByEncryptionKey(mdResult, keyLength);              
-        } else {
+            */
+            }
+            else {
             dic.Put(PdfName.FILTER, PdfName.STANDARD);
             dic.Put(PdfName.O, new PdfLiteral(PdfContentByte.EscapeString(ownerKey)));
             dic.Put(PdfName.U, new PdfLiteral(PdfContentByte.EscapeString(userKey)));

@@ -19,6 +19,7 @@ using Org.BouncyCastle.Ocsp;
 using Org.BouncyCastle.Tsp;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Utilities;
+using System.Security.Cryptography;
 
 /*
  * Copyright 2004 by Paulo Soares.
@@ -479,7 +480,7 @@ namespace iTextSharp.text.pdf {
                         String hashAlgorithm, bool hasRSAdata) {
             this.privKey = privKey;
             
-            digestAlgorithm = (String)allowedDigests[hashAlgorithm.ToUpper(CultureInfo.InvariantCulture)];
+            digestAlgorithm = (String)allowedDigests[hashAlgorithm.ToUpperInvariant()];
             if (digestAlgorithm == null)
                 throw new ArgumentException("Unknown Hash Algorithm "+hashAlgorithm);
             
@@ -580,7 +581,7 @@ namespace iTextSharp.text.pdf {
             if (timeStampToken == null)
                 return false;
             MessageImprint imprint = timeStampToken.TimeStampInfo.TstInfo.MessageImprint;
-            byte[] md = new System.Security.Cryptography.SHA1CryptoServiceProvider().ComputeHash(digest);
+            byte[] md = SHA1.Create().ComputeHash(digest);
             byte[] imphashed = imprint.GetHashedMessage();
             bool res = Arrays.AreEqual(md, imphashed);
             return res;
@@ -989,7 +990,7 @@ namespace iTextSharp.text.pdf {
             
             Asn1OutputStream dout = new Asn1OutputStream(bOut);
             dout.WriteObject(new DerOctetString(digest));
-            dout.Close();
+            dout.Dispose();
             
             return bOut.ToArray();
         }
@@ -1128,7 +1129,8 @@ namespace iTextSharp.text.pdf {
             // Added by Martin Brunecky, 07/12/2007 folowing Aiken Sam, 2006-11-15
             // Sam found Adobe expects time-stamped SHA1-1 of the encrypted digest
             if (tsaClient != null) {
-                byte[] tsImprint = new System.Security.Cryptography.SHA1CryptoServiceProvider().ComputeHash(digest);
+                
+                byte[] tsImprint = SHA1.Create().ComputeHash(digest);
                 byte[] tsToken = tsaClient.GetTimeStampToken(this, tsImprint);
                 if (tsToken != null) {
                     Asn1EncodableVector unauthAttributes = BuildUnauthenticatedAttributes(tsToken);
@@ -1169,7 +1171,7 @@ namespace iTextSharp.text.pdf {
             
             Asn1OutputStream dout = new Asn1OutputStream(bOut);
             dout.WriteObject(new DerSequence(whole));
-            dout.Close();
+            dout.Dispose();
             
             return bOut.ToArray();
         }
@@ -1440,7 +1442,7 @@ namespace iTextSharp.text.pdf {
                         throw new ArgumentException("badly formated directory string");
                     }
                     
-                    String id = token.Substring(0, index).ToUpper(System.Globalization.CultureInfo.InvariantCulture);
+                    String id = token.Substring(0, index).ToUpperInvariant();
                     String value = token.Substring(index + 1);
                     ArrayList vs = (ArrayList)values[id];
                     if (vs == null) {
